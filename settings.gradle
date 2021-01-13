@@ -1,2 +1,6 @@
-rootProject.name = 'jsoup-xpath-context'
-
+/**
+ * https://github.com/ngoanh2n/blur
+ * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
+ * @since 2021-01-13
+ */
+rootProject.name = "jsoup-xpath-context"

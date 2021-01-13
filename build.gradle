@@ -1,19 +1,64 @@
-plugins {
-    id 'java'
+/**
+ * https://github.com/ngoanh2n/blur
+ * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
+ * @since 2021-01-13
+ */
+group(property("group"))
+version(property("version"))
+description("Jsoup XPath Context")
+
+apply plugin: "java"
+apply plugin: "idea"
+apply plugin: "eclipse"
+
+ext {
+    ENCODING                        = "UTF-8"
+    SLF4J_VERSION                   = "1.7.30"
+    JSOUP_VERSION                   = "1.13.1"
+    JUNIT5_JUPITER_VERSION          = "5.7.0"
 }
 
-group 'io.github.ngoanh2n'
-version '1.0-SNAPSHOT'
+[compileJava, compileTestJava]*.sourceCompatibility = 1.8
+[compileJava, compileTestJava]*.targetCompatibility = 1.8
+[compileJava, compileTestJava]*.options.collect { options -> options.debug = true }
+[compileJava, compileTestJava]*.options.collect { options -> options.encoding = ENCODING }
 
 repositories {
+    jcenter()
     mavenCentral()
+    maven { url "https://plugins.gradle.org/m2/" }
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    implementation("org.jsoup:jsoup:${JSOUP_VERSION}")
+    implementation("org.slf4j:slf4j-api:${SLF4J_VERSION}")
+    testImplementation("org.slf4j:slf4j-log4j12:${SLF4J_VERSION}")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${JUNIT5_JUPITER_VERSION}")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:${JUNIT5_JUPITER_VERSION}")
 }
 
-test {
-    useJUnitPlatform()
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform() {
+        includeEngines("junit-jupiter")
+    }
+
+    testLogging {
+        showStandardStreams = true
+        events "passed", "skipped", "failed"
+    }
+
+    systemProperty("file.encoding", ENCODING)
+    systemProperty("junit.jupiter.extensions.autodetection.enabled", "true")
+
+    ignoreFailures = true
+    outputs.upToDateWhen { false }
+    systemProperties = System.getProperties() as Map<String, ?>
 }
