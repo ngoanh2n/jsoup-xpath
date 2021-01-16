@@ -27,6 +27,10 @@ class XpathEvaluators {
         return new ParentEvaluator(evaluator);
     }
 
+    static Evaluator tag(String tagName) {
+        return new Evaluator.Tag(tagName.trim().toLowerCase());
+    }
+
     private static final class RootEvaluator extends Evaluator {
 
         @Override
