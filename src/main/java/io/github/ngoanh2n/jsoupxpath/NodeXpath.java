@@ -1,5 +1,6 @@
 package io.github.ngoanh2n.jsoupxpath;
 
+import com.sun.istack.internal.NotNull;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
@@ -8,6 +9,8 @@ import org.jsoup.select.Evaluator;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Class to solve xpath (location path) for a {@linkplain Node} from its {@linkplain Document}
@@ -21,22 +24,23 @@ import java.util.List;
  */
 public class NodeXpath {
 
-    private final Node node;
     private final LinkedList<Tag> tags;
 
-    public NodeXpath(Node node) {
-        this.node = node;
-        this.buildXpathUnits();
-        this.tags = new LinkedList<>();
+    public NodeXpath(@NotNull Node node) {
+        this.tags = nodeToTags(node);
+    }
+
+    public NodeXpath(@NotNull String xpath) {
+        this.tags = xpathToTags(xpath);
     }
 
     public String getLocationPath() {
-        StringBuilder locations = new StringBuilder();
+        StringBuilder path = new StringBuilder();
         if (!tags.isEmpty()) {
-            locations.append("/");
-            tags.forEach(tag -> locations.append("/").append(tag.toString()));
+            path.append("/");
+            tags.forEach(tag -> path.append("/").append(tag.toString()));
         }
-        return locations.toString();
+        return path.toString();
     }
 
     @Override
@@ -76,16 +80,16 @@ public class NodeXpath {
         return results;
     }
 
-    public static final class Tag {
+    private static final class Tag {
 
         private int index;
         private final String name;
 
         Tag(String name) {
-            this(1, name);
+            this(name, 1);
         }
 
-        Tag(int index, String name) {
+        Tag(String name, int index) {
             this.name = name;
             this.index = index;
         }
@@ -100,17 +104,64 @@ public class NodeXpath {
         }
     }
 
-    private void buildXpathUnits() {
+    private LinkedList<Tag> nodeToTags(Node node) {
+        LinkedList<Tag> tags = new LinkedList<>();
+
         if (NodeHelper.standard(node)) {
             Elements parents = ((Element) node).parents();
+
             for (int i = parents.size() - 1; i >= 0; i--) {
-                tags.add(toTag(parents.get(i)));
+                tags.add(elementToTag(parents.get(i)));
             }
-            tags.add(toTag((Element) node));
+            tags.add(elementToTag((Element) node));
         }
+        return tags;
     }
 
-    private static Tag toTag(Element element) {
+    private LinkedList<Tag> xpathToTags(String xpath) {
+        if (!xpath.startsWith("/")) {
+            xpath = "/" + xpath;
+        }
+        LinkedList<Tag> tags = new LinkedList<>();
+
+        /*
+        ^(|\/)(((\/[a-z]{1,10})(|\[\d\]))+)$
+        * */
+        String inputRegex = "^(|/)(((/[a-z]{1,10})(|\\[\\d]))+)$";
+        Matcher inputMatcher = Pattern.compile(inputRegex).matcher(xpath);
+
+        if (inputMatcher.find()) {
+            xpath = inputMatcher.group(2);
+            /*
+             * ([a-z]{1,10})(\[\d\]|)
+             * */
+            String tagRegex = "([a-z]{1,10})(\\[\\d]|)";
+            Matcher tagMatcher = Pattern.compile(tagRegex).matcher(xpath);
+
+            while (tagMatcher.find()) {
+                String tagName = tagMatcher.group(1);
+                String tagIndex = tagMatcher.group(2);
+
+                if (tagIndex.isEmpty()) {
+                    tags.add(new Tag(tagName));
+                } else {
+                    /*
+                     * ^\[(\d)\]$
+                     * */
+                    String indexRegex = "^\\[(\\d)]$";
+                    Matcher indexMatcher = Pattern.compile(indexRegex).matcher(tagIndex);
+
+                    if (indexMatcher.find()) {
+                        tags.add(new Tag(tagName, Integer.parseInt(indexMatcher.group(1))));
+                    }
+                }
+            }
+        }
+
+        return tags;
+    }
+
+    private static Tag elementToTag(Element element) {
         Tag tag = new Tag(element.nodeName());
         Element parent = element.parent();
 
