@@ -2,9 +2,9 @@
 [![GitHub watchers](https://img.shields.io/github/watchers/ngoanh2n/jsoup-xpath.svg?style=social&label=Watch&maxAge=2592000)](https://github.com/ngoanh2n/jsoup-xpath/watchers/)
 [![GitHub forks](https://img.shields.io/github/forks/ngoanh2n/jsoup-xpath.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/ngoanh2n/jsoup-xpath/network/members/)
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.ngoanh2n/jsoup-xpath/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.ngoanh2n/jsoup-xpath)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.ngoanh2n/jsoup-xpath/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.ngoanh2n/jsoup-xpath)
 [![GitHub release](https://img.shields.io/github/release/ngoanh2n/jsoup-xpath.svg)](https://github.com/ngoanh2n/jsoup-xpath/releases/)
-[![javadoc](https://javadoc.io/badge2/com.github.ngoanh2n/jsoup-xpath/javadoc.svg)](https://javadoc.io/doc/com.github.ngoanh2n/jsoup-xpath)
+[![javadoc](https://javadoc.io/badge2/io.github.ngoanh2n/jsoup-xpath/javadoc.svg)](https://javadoc.io/doc/io.github.ngoanh2n/jsoup-xpath)
 [![Build Status](https://travis-ci.org/ngoanh2n/jsoup-xpath.svg?branch=master)](https://travis-ci.org/ngoanh2n/jsoup-xpath)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
 [![badge-jdk](https://img.shields.io/badge/jdk-8-blue.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
@@ -55,6 +55,7 @@ Add the `jsoup-xpath` dependency to your `pom.xml`
 
 ```java
 NodeXpath xpath = new NodeXpath(org.jsoup.nodes.Node)
+xpath.getLocationPath() /* //html/body/div/input[2] */
 ```
 
 ### Find Jsoup Node By XpathContext
