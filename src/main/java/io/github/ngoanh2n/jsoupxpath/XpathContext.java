@@ -4,10 +4,14 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Collector;
 import org.jsoup.select.Elements;
+import org.jsoup.select.Evaluator;
 
 import javax.annotation.Nonnull;
 
 /**
+ * A search context for org.jsoup.nodes.{@linkplain Document}
+ * <br>
+ * <br>
  * Repository: <a href="https://github.com/ngoanh2n/jsoup-xpath">https://github.com/ngoanh2n/jsoup-xpath</a>
  *
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
@@ -22,12 +26,24 @@ public class XpathContext {
         this.document = document;
     }
 
+    /**
+     * Find the first org.jsoup.nodes.{@linkplain Element} using the given xpath
+     *
+     * @param xpath is location path (chained tag names)
+     * @return The first matching element on the current context
+     */
     public Element findElement(@Nonnull String xpath) {
         return findElements(xpath).first();
     }
 
+    /**
+     * Find the all org.jsoup.nodes.{@linkplain Element} (org.jsoup.nodes.{@linkplain Elements}) using the given xpath
+     *
+     * @param xpath is location path (chained tag names)
+     * @return The matching elements on the current context
+     */
     public Elements findElements(@Nonnull String xpath) {
-        XpathEvaluator evaluator = new XpathEvaluator(xpath);
+        Evaluator evaluator = new XpathEvaluator(xpath);
         return Collector.collect(evaluator, document);
     }
 }
