@@ -38,7 +38,7 @@ public class NodeHelper {
      * And has no any child node except {@linkplain TextNode}
      *
      * @param node is a HTML element
-     * @return Indicate {@code node} is a standard node or not
+     * @return Indicate {@code node} is a primitive node or not
      */
     public static boolean primitive(@Nonnull Node node) {
         if (standard(node)) {
