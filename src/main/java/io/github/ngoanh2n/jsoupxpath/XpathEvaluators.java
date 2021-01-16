@@ -4,6 +4,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.jsoup.select.Evaluator;
 
+import java.util.List;
+
 /**
  * Provides {@linkplain Evaluator}s to build {@linkplain XpathEvaluator}
  * <br>
@@ -34,6 +36,10 @@ class XpathEvaluators {
 
     static Evaluator index(int b) {
         return new IndexEvaluator(0, b);
+    }
+
+    static Evaluator combination(List<Evaluator> evaluators) {
+        return new CombinationEvaluator(evaluators);
     }
 
     private static final class RootEvaluator extends Evaluator {
@@ -97,6 +103,25 @@ class XpathEvaluators {
         @Override
         protected String getPseudoClass() {
             return "index";
+        }
+    }
+
+    private static final class CombinationEvaluator extends Evaluator {
+
+        private final List<Evaluator> evaluators;
+
+        private CombinationEvaluator(List<Evaluator> evaluators) {
+            this.evaluators = evaluators;
+        }
+
+        @Override
+        public boolean matches(Element root, Element node) {
+            for (Evaluator evaluator : evaluators) {
+                if (!evaluator.matches(root, node)) {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
