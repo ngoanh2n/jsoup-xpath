@@ -1,6 +1,7 @@
 package io.github.ngoanh2n.jsoupxpath;
 
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.jsoup.select.Evaluator;
 
 /**
@@ -29,6 +30,10 @@ class XpathEvaluators {
 
     static Evaluator tag(String tagName) {
         return new Evaluator.Tag(tagName.trim().toLowerCase());
+    }
+
+    static Evaluator index(int b) {
+        return new IndexEvaluator(0, b);
     }
 
     private static final class RootEvaluator extends Evaluator {
@@ -70,6 +75,28 @@ class XpathEvaluators {
         public boolean matches(Element root, Element element) {
             Element parent = element.parent();
             return parent != null && evaluator.matches(root, parent);
+        }
+    }
+
+    private static final class IndexEvaluator extends Evaluator.CssNthEvaluator {
+
+        private IndexEvaluator(int a, int b) {
+            super(a, b);
+        }
+
+        protected int calculatePosition(Element root, Element element) {
+            int position = 0;
+            Elements family = element.parent().children();
+            for (Element value : family) {
+                if (value.tag().equals(element.tag())) position++;
+                if (value == element) break;
+            }
+            return position;
+        }
+
+        @Override
+        protected String getPseudoClass() {
+            return "index";
         }
     }
 }
