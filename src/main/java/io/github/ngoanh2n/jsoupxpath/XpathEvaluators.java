@@ -1,5 +1,6 @@
 package io.github.ngoanh2n.jsoupxpath;
 
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Evaluator;
 
 /**
@@ -13,4 +14,16 @@ import org.jsoup.select.Evaluator;
  * @since 2021-01-16
  */
 class XpathEvaluators {
+
+    static Evaluator root() {
+        return new RootEvaluator();
+    }
+
+    private static final class RootEvaluator extends Evaluator {
+
+        @Override
+        public boolean matches(Element root, Element element) {
+            return root == element;
+        }
+    }
 }
