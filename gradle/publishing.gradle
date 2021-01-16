@@ -4,9 +4,8 @@
  * @since 2021-01-13
  */
 tasks.withType(Javadoc) {
-    options.addStringOption("Xdoclint:none", "-quiet")
     options.addStringOption("encoding", ENCODING)
-    options.addStringOption("charSet", ENCODING)
+    options.addStringOption("Xdoclint:none", "-quiet")
 }
 
 modifyPom {
