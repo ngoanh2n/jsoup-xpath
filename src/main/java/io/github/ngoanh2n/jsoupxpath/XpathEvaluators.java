@@ -23,6 +23,10 @@ class XpathEvaluators {
         return new AncestorEvaluator(evaluator);
     }
 
+    static Evaluator parent(Evaluator evaluator) {
+        return new ParentEvaluator(evaluator);
+    }
+
     private static final class RootEvaluator extends Evaluator {
 
         @Override
@@ -48,6 +52,20 @@ class XpathEvaluators {
                 parent = parent.parent();
             }
             return false;
+        }
+    }
+
+    private static final class ParentEvaluator extends Evaluator {
+
+        private final Evaluator evaluator;
+
+        private ParentEvaluator(Evaluator evaluator) {
+            this.evaluator = evaluator;
+        }
+
+        public boolean matches(Element root, Element element) {
+            Element parent = element.parent();
+            return parent != null && evaluator.matches(root, parent);
         }
     }
 }
