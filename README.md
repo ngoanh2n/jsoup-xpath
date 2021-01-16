@@ -14,7 +14,14 @@
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/ngoanh2n/jsoup-xpath.svg)](https://github.com/ngoanh2n/jsoup-xpath/pulls/)
 [![GitHub pull-requests closed](https://img.shields.io/github/issues-pr-closed/ngoanh2n/jsoup-xpath.svg)](https://github.com/ngoanh2n/jsoup-xpath/pulls?q=is%3Apulls+is%3Aclosed)
 
-# Jsoup XPath
+- [How To Use](#how-to-use)
+  - [Gradle Project](#gradle-project)
+  - [Maven Project](#maven-project)
+- [How To Use](#how-to-use-1)
+  - [Convert Jsoup Node To XPath](#convert-jsoup-node-to-xpath)
+  - [Find Jsoup Node By XpathContext](#find-jsoup-node-by-xpathcontext)
+    - [Find Element](#find-element)
+    - [Find Elements](#find-elements)
 
 ## How To Use
 ### Gradle Project
@@ -38,4 +45,29 @@ Add the `jsoup-xpath` dependency to your `pom.xml`
     </dependency>
     [...]
 </dependencies>
+```
+
+## How To Use
+### Convert Jsoup Node To XPath
+`node` can be:
+- `org.jsoup.nodes.Node`
+- `org.jsoup.nodes.Element`
+
+```java
+NodeXpath xpath = new NodeXpath(org.jsoup.nodes.Node)
+```
+
+### Find Jsoup Node By XpathContext
+```java
+XpathContext context = new XpathContext(org.jsoup.nodes.Document)
+```
+
+#### Find Element
+```java
+XpathContext#findElement("//html/body/div[2]")
+```
+
+#### Find Elements
+```java
+XpathContext#findElements("//html/body/div[2]/div")
 ```
