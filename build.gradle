@@ -13,8 +13,8 @@ apply plugin: "eclipse"
 
 ext {
     ENCODING                        = "UTF-8"
-    SLF4J_VERSION                   = "1.7.30"
     JSOUP_VERSION                   = "1.13.1"
+    FIND_BUGS_ANNOTATIONS_VERSION   = "3.0.1"
     JUNIT5_JUPITER_VERSION          = "5.7.0"
 }
 
@@ -31,8 +31,7 @@ repositories {
 
 dependencies {
     implementation("org.jsoup:jsoup:${JSOUP_VERSION}")
-    implementation("org.slf4j:slf4j-api:${SLF4J_VERSION}")
-    testImplementation("org.slf4j:slf4j-log4j12:${SLF4J_VERSION}")
+    implementation("com.google.code.findbugs:annotations:${FIND_BUGS_ANNOTATIONS_VERSION}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${JUNIT5_JUPITER_VERSION}")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:${JUNIT5_JUPITER_VERSION}")
 }
