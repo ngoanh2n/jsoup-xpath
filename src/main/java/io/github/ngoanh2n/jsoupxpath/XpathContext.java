@@ -10,9 +10,6 @@ import javax.annotation.Nonnull;
 
 /**
  * A search context for org.jsoup.nodes.{@linkplain Document}
- * <br>
- * <br>
- * Repository: <a href="https://github.com/ngoanh2n/jsoup-xpath">https://github.com/ngoanh2n/jsoup-xpath</a>
  *
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  * @version 1.0.0

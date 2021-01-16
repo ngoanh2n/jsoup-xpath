@@ -6,10 +6,7 @@ import org.jsoup.select.Evaluator;
 import javax.annotation.Nonnull;
 
 /**
- * {@linkplain XpathEvaluator} is a {@linkplain org.jsoup.select.Evaluator}
- * <br>
- * <br>
- * Repository: <a href="https://github.com/ngoanh2n/jsoup-xpath">https://github.com/ngoanh2n/jsoup-xpath</a>
+ * {@linkplain XpathEvaluator} is a org.jsoup.select.{@linkplain org.jsoup.select.Evaluator}
  *
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  * @version 1.0.0

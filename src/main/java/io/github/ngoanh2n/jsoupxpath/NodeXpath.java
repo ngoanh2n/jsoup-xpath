@@ -13,10 +13,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Class to solve xpath (location path) for a {@linkplain Node} from its {@linkplain Document}
- * <br>
- * <br>
- * Repository: <a href="https://github.com/ngoanh2n/jsoup-xpath">https://github.com/ngoanh2n/jsoup-xpath</a>
+ * Class to solve xpath (location path) for a org.jsoup.nodes.{@linkplain Node}
+ * from its org.jsoup.nodes.{@linkplain Document}
  *
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  * @version 1.0.0
@@ -34,6 +32,11 @@ public class NodeXpath {
         this.tags = xpathToTags(xpath);
     }
 
+    /**
+     * Get xpath (location path) from {@linkplain Node}
+     *
+     * @return Node's xpath
+     */
     public String getLocationPath() {
         StringBuilder path = new StringBuilder();
         if (!tags.isEmpty()) {
