@@ -19,11 +19,35 @@ class XpathEvaluators {
         return new RootEvaluator();
     }
 
+    static Evaluator ancestor(Evaluator evaluator) {
+        return new AncestorEvaluator(evaluator);
+    }
+
     private static final class RootEvaluator extends Evaluator {
 
         @Override
         public boolean matches(Element root, Element element) {
             return root == element;
+        }
+    }
+
+    private static final class AncestorEvaluator extends Evaluator {
+
+        private final Evaluator evaluator;
+
+        private AncestorEvaluator(Evaluator evaluator) {
+            this.evaluator = evaluator;
+        }
+
+        public boolean matches(Element root, Element element) {
+            Element parent = element.parent();
+            while (parent != null) {
+                if (evaluator.matches(root, parent)) {
+                    return true;
+                }
+                parent = parent.parent();
+            }
+            return false;
         }
     }
 }
