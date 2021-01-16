@@ -7,38 +7,35 @@ import org.jsoup.select.Evaluator;
 import java.util.List;
 
 /**
- * Provides {@linkplain Evaluator}s to build {@linkplain XpathEvaluator}
- * <br>
- * <br>
- * Repository: <a href="https://github.com/ngoanh2n/jsoup-xpath">https://github.com/ngoanh2n/jsoup-xpath</a>
+ * Provides org.jsoup.select.{@linkplain Evaluator}s to build {@linkplain XpathEvaluator}
  *
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  * @version 1.0.0
  * @since 2021-01-16
  */
-class XpathEvaluators {
+public class XpathEvaluators {
 
-    static Evaluator root() {
+    public static Evaluator root() {
         return new RootEvaluator();
     }
 
-    static Evaluator ancestor(Evaluator evaluator) {
+    public static Evaluator ancestor(Evaluator evaluator) {
         return new AncestorEvaluator(evaluator);
     }
 
-    static Evaluator parent(Evaluator evaluator) {
+    public static Evaluator parent(Evaluator evaluator) {
         return new ParentEvaluator(evaluator);
     }
 
-    static Evaluator tag(String tagName) {
+    public static Evaluator tag(String tagName) {
         return new Evaluator.Tag(tagName.trim().toLowerCase());
     }
 
-    static Evaluator index(int b) {
+    public static Evaluator index(int b) {
         return new IndexEvaluator(0, b);
     }
 
-    static Evaluator combination(List<Evaluator> evaluators) {
+    public static Evaluator combination(List<Evaluator> evaluators) {
         return new CombinationEvaluator(evaluators);
     }
 
