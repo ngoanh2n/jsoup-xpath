@@ -10,6 +10,10 @@ description("Jsoup XPath")
 apply plugin: "java"
 apply plugin: "idea"
 apply plugin: "eclipse"
+apply plugin: "signing"
+apply plugin: "java-library"
+apply plugin: "maven-publish"
+apply plugin: "com.bmuschko.nexus"
 
 ext {
     ENCODING                        = "UTF-8"
@@ -41,6 +45,9 @@ buildscript {
         jcenter()
         mavenCentral()
         maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath "com.bmuschko:gradle-nexus-plugin:2.3.1"
     }
 }
 
