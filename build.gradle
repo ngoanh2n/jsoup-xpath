@@ -5,7 +5,7 @@
  */
 group(property("group"))
 version(property("version"))
-description("Jsoup XPath Context")
+description("Jsoup XPath")
 
 apply plugin: "java"
 apply plugin: "idea"
