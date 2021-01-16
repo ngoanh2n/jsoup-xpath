@@ -5,6 +5,8 @@ import org.jsoup.nodes.DocumentType;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
 
+import javax.annotation.Nonnull;
+
 /**
  * Repository: <a href="https://github.com/ngoanh2n/jsoup-xpath">https://github.com/ngoanh2n/jsoup-xpath</a>
  *
@@ -14,7 +16,7 @@ import org.jsoup.nodes.TextNode;
  */
 public class NodeHelper {
 
-    public static boolean standard(Node node) {
+    public static boolean standard(@Nonnull Node node) {
         if (!(node instanceof Document)) {
             if (!(node instanceof DocumentType)) {
                 return !(node instanceof TextNode);
@@ -23,7 +25,7 @@ public class NodeHelper {
         return false;
     }
 
-    public static boolean primitive(Node node) {
+    public static boolean primitive(@Nonnull Node node) {
         if (standard(node)) {
             if (node.childNodes().size() == 0) {
                 return true;

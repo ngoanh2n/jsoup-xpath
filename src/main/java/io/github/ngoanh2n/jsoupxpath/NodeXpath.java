@@ -1,12 +1,12 @@
 package io.github.ngoanh2n.jsoupxpath;
 
-import com.sun.istack.internal.NotNull;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 import org.jsoup.select.Evaluator;
 
+import javax.annotation.Nonnull;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -26,11 +26,11 @@ public class NodeXpath {
 
     private final LinkedList<Tag> tags;
 
-    public NodeXpath(@NotNull Node node) {
+    public NodeXpath(@Nonnull Node node) {
         this.tags = nodeToTags(node);
     }
 
-    public NodeXpath(@NotNull String xpath) {
+    public NodeXpath(@Nonnull String xpath) {
         this.tags = xpathToTags(xpath);
     }
 
@@ -48,7 +48,7 @@ public class NodeXpath {
         return getLocationPath();
     }
 
-    List<Evaluator> toEvaluators() {
+    List<Evaluator> evaluators() {
         LinkedList<Evaluator> results = new LinkedList<>();
 
         for (int i = 0; i < tags.size(); i++) {

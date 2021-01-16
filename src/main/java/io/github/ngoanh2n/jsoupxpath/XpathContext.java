@@ -1,10 +1,11 @@
 package io.github.ngoanh2n.jsoupxpath;
 
-import com.sun.istack.internal.NotNull;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Collector;
 import org.jsoup.select.Elements;
+
+import javax.annotation.Nonnull;
 
 /**
  * Repository: <a href="https://github.com/ngoanh2n/jsoup-xpath">https://github.com/ngoanh2n/jsoup-xpath</a>
@@ -17,15 +18,15 @@ public class XpathContext {
 
     protected final Document document;
 
-    public XpathContext(@NotNull Document document) {
+    public XpathContext(@Nonnull Document document) {
         this.document = document;
     }
 
-    public Element findElement(@NotNull String xpath) {
+    public Element findElement(@Nonnull String xpath) {
         return findElements(xpath).first();
     }
 
-    public Elements findElements(String xpath) {
+    public Elements findElements(@Nonnull String xpath) {
         XpathEvaluator evaluator = new XpathEvaluator(xpath);
         return Collector.collect(evaluator, document);
     }

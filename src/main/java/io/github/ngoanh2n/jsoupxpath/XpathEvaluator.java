@@ -1,8 +1,9 @@
 package io.github.ngoanh2n.jsoupxpath;
 
-import com.sun.istack.internal.NotNull;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Evaluator;
+
+import javax.annotation.Nonnull;
 
 /**
  * {@linkplain XpathEvaluator} is a {@linkplain org.jsoup.select.Evaluator}
@@ -18,12 +19,12 @@ public class XpathEvaluator extends Evaluator {
 
     private final Evaluator evaluator;
 
-    public XpathEvaluator(@NotNull String xpath) {
+    public XpathEvaluator(@Nonnull String xpath) {
         this(new NodeXpath(xpath));
     }
 
-    public XpathEvaluator(@NotNull NodeXpath nodeXpath) {
-        this.evaluator = XpathEvaluators.combination(nodeXpath.toEvaluators());
+    public XpathEvaluator(@Nonnull NodeXpath nodeXpath) {
+        this.evaluator = XpathEvaluators.combination(nodeXpath.evaluators());
     }
 
     @Override
