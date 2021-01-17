@@ -14,16 +14,22 @@
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/ngoanh2n/jsoup-xpath.svg)](https://github.com/ngoanh2n/jsoup-xpath/pulls/)
 [![GitHub pull-requests closed](https://img.shields.io/github/issues-pr-closed/ngoanh2n/jsoup-xpath.svg)](https://github.com/ngoanh2n/jsoup-xpath/pulls?q=is%3Apulls+is%3Aclosed)
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
 - [How To Use](#how-to-use)
   - [Gradle Project](#gradle-project)
   - [Maven Project](#maven-project)
 - [How To Use](#how-to-use-1)
-  - [Convert Jsoup Node To XPath](#convert-jsoup-node-to-xpath)
-  - [Find Jsoup Node By XpathContext](#find-jsoup-node-by-xpathcontext)
+  - [Convert JSoup node to XPath](#convert-jsoup-node-to-xpath)
+  - [Find JSoup node by XpathContext](#find-jsoup-node-by-xpathcontext)
     - [Find Element](#find-element)
     - [Find Elements](#find-elements)
 
-## How To Use
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Declare Dependency
 ### Gradle Project
 Add the `jsoup-xpath` dependency to your `build.gradle`
 ```gradle
@@ -48,7 +54,7 @@ Add the `jsoup-xpath` dependency to your `pom.xml`
 ```
 
 ## How To Use
-### Convert Jsoup Node To XPath
+### Convert JSoup node to XPath
 `node` can be:
 - `org.jsoup.nodes.Node`
 - `org.jsoup.nodes.Element`
@@ -58,7 +64,7 @@ NodeXpath xpath = new NodeXpath(org.jsoup.nodes.Node)
 xpath.getLocationPath() /* //html/body/div/input[2] */
 ```
 
-### Find Jsoup Node By XpathContext
+### Find JSoup node by `XpathContext`
 ```java
 XpathContext context = new XpathContext(org.jsoup.nodes.Document)
 ```
