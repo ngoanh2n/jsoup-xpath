@@ -13,7 +13,7 @@ modifyPom {
         name "jsoup-xpath"
         inceptionYear "2021"
         url "https://github.com/ngoanh2n/jsoup-xpath"
-        description "Convert Jsoup Node to XPath. Search in org.jsoup.nodes.Document by a XPath."
+        description "Convert JSoup node to XPath. Search in org.jsoup.nodes.Document by a XPath."
 
         scm {
             url "http://github.com/ngoanh2n/jsoup-xpath/tree/master"
