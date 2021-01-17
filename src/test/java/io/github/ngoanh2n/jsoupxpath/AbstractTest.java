@@ -23,7 +23,7 @@ public abstract class AbstractTest {
 
     @BeforeAll
     static void loadDummyHtml() throws IOException {
-        File html = Resources.file("io/github/ngoanh2n/jsoupxpath/dummy.html");
+        File html = Resources.getFile("io/github/ngoanh2n/jsoupxpath/dummy.html");
         StringBuilder sb = new StringBuilder();
         Stream<String> lines = Files.lines(Paths.get(html.getAbsolutePath()), StandardCharsets.UTF_8);
         lines.forEach(sb::append);
