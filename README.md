@@ -34,7 +34,7 @@
 Add the `jsoup-xpath` dependency to your `build.gradle`
 ```gradle
 dependencies {
-    testImplementation("io.github.ngoanh2n:jsoup-xpath:1.0.1")
+    testImplementation("io.github.ngoanh2n:jsoup-xpath:1.0.2")
 }
 ```
 
@@ -46,7 +46,7 @@ Add the `jsoup-xpath` dependency to your `pom.xml`
     <dependency>
         <groupId>io.github.ngoanh2n</groupId>
         <artifactId>jsoup-xpath</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
         <scope>test</scope>
     </dependency>
     [...]
